@@ -1,0 +1,24 @@
+#GradeChecker Configuration File
+
+[Login]
+#Username for ParentConnect
+Username=
+
+#Password for ParentConnect
+Password=
+
+
+[Connection]
+#URLs for ParentConnect
+Host = https://parentconnect.aacps.org
+Assignment = /AssignmentsSchedule.asp
+Login = 
+
+
+[Grades]
+#How many grades can we expect?
+Number = 9
+
+[Output]
+#Comma seprated list of output modules you'd like to run
+Modules = console, json
