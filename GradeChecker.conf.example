@@ -12,7 +12,7 @@ Password=
 #URLs for ParentConnect
 Host = https://parentconnect.aacps.org
 Assignment = /AssignmentsSchedule.asp
-Login = 
+Login = /WebService/OCE_ws.asmx/CheckUpdateAccountInfo
 
 
 [Grades]
