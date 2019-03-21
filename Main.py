@@ -18,6 +18,11 @@ if __name__ == "__main__":
     args = args.parse_args()
 
     #Load configuration options from file
-    config = Config.getConfig()
-
-    print(config.sections())
+    if args.config:
+        #TODO: implement fancy path evaluation
+        pass
+    else:
+        config = Config.getConfig()
+    
+    #Start connection to parent connect
+    Connection.readGrades(config)
