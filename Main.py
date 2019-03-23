@@ -26,6 +26,9 @@ if __name__ == "__main__":
     
     #Read grades (in raw html) from parent connection
     grades = Connection.readGrades(config)
+    #print(grades)
+    #grades = open("testgrades", "r")
+    #grades = grades.readline()
 
     #Parse through html and create a list of grade objects
-    #gradelist = Grades.parseGrades(grades)
+    gradelist = Grades.parseGrades(config, grades)
