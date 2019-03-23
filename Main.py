@@ -1,4 +1,5 @@
-from modules import Config, Connection, Grades
+from modules import Config, Connection, Grades, output
+from modules.output import *
 import sys, argparse
 
 
@@ -26,9 +27,13 @@ if __name__ == "__main__":
     
     #Read grades (in raw html) from parent connection
     grades = Connection.readGrades(config)
-    #print(grades)
-    #grades = open("testgrades", "r")
-    #grades = grades.readline()
+    
 
     #Parse through html and create a list of grade objects
     gradelist = Grades.parseGrades(config, grades)
+
+    #Run each specified output module
+    outputmodules = config["Output"]["Modules"].split(",")
+    for module in outputmodules:
+        print("\n")
+        eval("output." + module.strip()).output(gradelist)
