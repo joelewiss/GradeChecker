@@ -24,5 +24,8 @@ if __name__ == "__main__":
     else:
         config = Config.getConfig()
     
-    #Start connection to parent connect
-    Connection.readGrades(config)
+    #Read grades (in raw html) from parent connection
+    grades = Connection.readGrades(config)
+
+    #Parse through html and create a list of grade objects
+    #gradelist = Grades.parseGrades(grades)

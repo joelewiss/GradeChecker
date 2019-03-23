@@ -27,6 +27,7 @@ def readGrades(config):
     try:
         cookie = open("lastcookie", mode="r").readline()
         if cookieIsValid(cookie):
+            print("Stored cookie is valid, no need to login")
             valid=True
     except OSError:
         #File can't be opened (probably dosent exist)
@@ -35,7 +36,8 @@ def readGrades(config):
     #If we don't have a valid cookie, get a new one by logging in
     if (not valid):
         cookie = getNewCookie()
-        print("We have a valid cookie: " + cookie)
+        #We know the cookie is valid, so write it for later use
+        writeCookie(cookie)
 
     #Make a request to assignment schedule and return the response
     connection = client.HTTPSConnection(cfg["Connection"]["Host"], context=sslContext)
@@ -77,10 +79,6 @@ def getNewCookie():
     response = connection.getresponse()
     cookie = response.getheader("Set-Cookie").split(";")[0]
 
-    print(cookie)
-    print("\nIs cookie valid?")
-    print(cookieIsValid(cookie))
-
     #Next, perform a login request via POST
     data = getData(1)
     print("\nTrying to login...")
@@ -120,4 +118,5 @@ def getData(connection):
 
 def writeCookie(cookie):
     """Once a valid cookie is known, it should be written to disk for later use"""
-    pass
+    file = open("lastcookie", "w")
+    file.write(cookie)
