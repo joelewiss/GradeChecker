@@ -1,3 +1,16 @@
+"""Python file for a library of constants for making connections
+
+Don't change any of these unless you know what you're doing!
+"""
+
+connection1 = {
+"Content-Type": "application/json; charset=UTF-8",
+}
+
+connection2 = {
+"Content-Type": "application/x-www-form-urlencoded"
+}
+
 base = """
 {
     "acctParms": {
