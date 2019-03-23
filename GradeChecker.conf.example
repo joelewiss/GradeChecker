@@ -9,11 +9,14 @@ Password=
 
 
 [Connection]
-#URLs for ParentConnect
-Host = https://parentconnect.aacps.org
-Assignment = /AssignmentsSchedule.asp
-Login = /WebService/OCE_ws.asmx/CheckUpdateAccountInfo
+#Host URL for ParentConnect
+Host = parentconnect.aacps.org
 
+#Don't change these unless you know what you're doing!
+Home = /HomePage.asp
+Assignment = /AssignmentsSchedule.asp
+Data = /WebService/OCE_ws.asmx/CheckUpdateAccountInfo 
+Login = /Login.asp?LoginState=2
 
 [Grades]
 #How many grades can we expect?
