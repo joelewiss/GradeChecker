@@ -1,0 +1,8 @@
+# Joe's Git Ignore
+
+GradeChecker.conf
+testgrades
+lastcookie
+
+__pycache__
+*.py[cod]
