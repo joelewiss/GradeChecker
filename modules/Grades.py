@@ -4,7 +4,7 @@ class GradeParser(HTMLParser):
 
     def __init__(self):
         self.atgradetable = False
-        self.gradestring = ""
+        self.gradestrings = []
         super().__init__()
 
     def handle_starttag(self, tag, attr):
@@ -18,16 +18,17 @@ class GradeParser(HTMLParser):
 
     def handle_data(self, data):
         if self.atgradetable:
-            self.gradestring += data + "\n"
+            self.gradestrings.append(data)
 
 class Grade():
     """Defines a grade object with the following attributes
 
-    course(str) Course number
-    title(str) Course title
-    letter(str) Grade letter
-    score(int) Percentage score
-    teacher(str) Teacher name
+    course(str)     Course number
+    title(str)      Course title
+    period(str)     Grading period
+    letter(str)     Grade letter
+    score(int)      Percentage score
+    teacher(str)    Teacher name
     """
 
 def parseGrades(config, html):
@@ -39,27 +40,35 @@ def parseGrades(config, html):
 
     parser = GradeParser()
     parser.feed(html)
-    gradestrings = parser.gradestring.split("\n")
+    print(parser.gradestrings)
 
     grades = []    
 
     index = 0
-    for string in gradestrings:
+    for string in parser.gradestrings:
         if (index < 5):
             pass
         elif int(index / 5) <= int(config["Grades"]["Number"]):
+            #Every grade should have 5 associated attributes
             id = index % 5
             if id == 0:
+                #First is the course number
                 grades.append(Grade())
                 grades[-1].course = string
             elif id == 1:
-                grades[-1].title = string
+                #Second is the course title, which needs to be split up
+                string = string.split("(")
+                grades[-1].title = string[0].strip()
+                grades[-1].period = string[-1].replace(")", "")
             elif id == 2:
+                #Third is the grade letter
                 grades[-1].letter = string
             elif id == 3:
+                #Fourth is the percentage score
                 grades[-1].score = int(float(string))
             elif id == 4:
-                grades[-1].teacher = string
+                #Fifth is the teacher, converted to upper case for consistency
+                grades[-1].teacher = string.upper()
 
         index += 1
 

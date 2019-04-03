@@ -10,7 +10,7 @@ def output(grades):
     #Good lord what is this
     for grade in grades:
         output += prefix + "."
-        output += grade.title.split("(")[0].strip().lower().replace(" ", "")
+        output += grade.teacher.split(",")[0].lower()
         output += " " + str(grade.score) + " "
         output += str(metrictime)
         output += "\n"
