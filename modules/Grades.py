@@ -40,7 +40,6 @@ def parseGrades(config, html):
 
     parser = GradeParser()
     parser.feed(html)
-    print(parser.gradestrings)
 
     grades = []    
 
