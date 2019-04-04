@@ -25,3 +25,9 @@ Number = 9
 [Output]
 #Comma seprated list of output modules you'd like to run
 Modules = console, json
+
+[Graphite]
+#Host of the Graphite server, formatted as host:port
+Host = localhost:2001
+#Graphite metric prefix for the grades
+Prefix = grades
