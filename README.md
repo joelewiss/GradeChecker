@@ -7,4 +7,3 @@ Parses grades from a Pearson ParentConnect website into a easily readable format
 - Fix retreiving grades with multiple students on one profile
     - Find a way for the program to automatically select a student given a name
     - Produce output for more than one student (maybe?)
-- Fix retreiving grades when there are less than the expected number of classes (at the begining of the quarter)

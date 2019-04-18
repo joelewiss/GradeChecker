@@ -18,10 +18,6 @@ Assignment = /AssignmentsSchedule.asp
 Data = /WebService/OCE_ws.asmx/CheckUpdateAccountInfo 
 Login = /Login.asp?LoginState=2
 
-[Grades]
-#How many grades can we expect?
-Number = 9
-
 [Output]
 #Comma seprated list of output modules you'd like to run
 Modules = console, json

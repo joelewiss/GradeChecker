@@ -36,20 +36,22 @@ def parseGrades(config, html):
     html = html.replace(b"\r\n", b"")
     html = html.replace(b"\t", b"")
     html = html.replace(b"<br />", b"")
-    html = html.decode()  
+    html = html.decode() 
 
     parser = GradeParser()
     parser.feed(html)
 
     grades = []    
 
-    index = 0
-    for string in parser.gradestrings:
+    for index in range(len(parser.gradestrings)):
+        string = parser.gradestrings[index]
+
+        id = index % 5
+        print("{}: {}".format(id, string))
         if (index < 5):
             pass
-        elif int(index / 5) <= int(config["Grades"]["Number"]):
-            #Every grade should have 5 associated attributes
-            id = index % 5
+        elif string.find("Italicized") == -1:
+            #Every grade should have 5 associated attributes 
             if id == 0:
                 #First is the course number
                 grades.append(Grade())
@@ -68,7 +70,7 @@ def parseGrades(config, html):
             elif id == 4:
                 #Fifth is the teacher, converted to upper case for consistency
                 grades[-1].teacher = string.upper()
-
-        index += 1
+        else:
+            break
 
     return grades
