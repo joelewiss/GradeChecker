@@ -47,7 +47,6 @@ def parseGrades(config, html):
         string = parser.gradestrings[index]
 
         id = index % 5
-        print("{}: {}".format(id, string))
         if (index < 5):
             pass
         elif string.find("Italicized") == -1:
